@@ -1,0 +1,69 @@
+﻿[class = SoccerGame, name = Ultimate Cup, place = River City Sportsplex, date/time = 07/28/2018 10:00, Weekend, audience = 1000] [teams = UR vs VCU, scores = 1 - 0, UR won, league = Professional] [Bad Weather]
+Events: 1
+Sport Events: 1
+Music Events: 0
+Art Events: 0
+Soccer Games: 1
+Basketball Games: 0
+Concerts: 0
+Orchestras: 0
+
+[class = BasketBallGame, name = NCAA, place = Siegel Center, date/time = 07/29/2018 13:30, Weekend, audience = 2000] [teams = UR vs VCU, scores = 30 - 40, VCU won, league = College]
+Events: 2
+Sport Events: 2
+Music Events: 0
+Art Events: 0
+Soccer Games: 1
+Basketball Games: 1
+Concerts: 0
+Orchestras: 0
+
+[class = Concert, name = Folk Festival, place = Browns Island, date/time = 08/01/2018 13:00, Weekday, audience = 900] [performers = [The Green Fields of America, Be�la Dona, Dale Ann Bradley]][type = Folk Music, Bad Weather]
+Events: 3
+Sport Events: 2
+Music Events: 1
+Art Events: 0
+Soccer Games: 1
+Basketball Games: 1
+Concerts: 1
+Orchestras: 0
+
+[class = Orchestra, name = Dominion Energy Casual Fridays, place = Dominion Arts Center, date/time = 08/01/2018 20:00, Weekday, audience = 800] [performers = [Richmond Symphony]] [Casual Attire]
+Events: 4
+Sport Events: 2
+Music Events: 2
+Art Events: 0
+Soccer Games: 1
+Basketball Games: 1
+Concerts: 1
+Orchestras: 1
+
+[class = SoccerGame, name = Jefferson Cup, place = River City Sportsplex, date/time = 08/02/2018 10:00, Weekday, audience = 2000] [teams = UR vs VCU, scores = 1 - 1, UR won, league = College] [Good Weather]
+Events: 5
+Sport Events: 3
+Music Events: 2
+Art Events: 0
+Soccer Games: 2
+Basketball Games: 1
+Concerts: 1
+Orchestras: 1
+
+[class = Concert, name = Innsbrook After Hours, place = Innsbrook, date/time = 08/02/2018 20:30, Weekday, audience = 500] [performers = [Lee Brice]][type = Jazz, Good Weather]
+Events: 6
+Sport Events: 3
+Music Events: 3
+Art Events: 0
+Soccer Games: 2
+Basketball Games: 1
+Concerts: 2
+Orchestras: 1
+
+[class = ArtEvent, name = Abstract Art in Dialogue, place = Virginia Museum of Fine Arts, date/time = 08/03/2018 10:30, Weekday, audience = 500] [type = Abstract Art]
+Events: 7
+Sport Events: 3
+Music Events: 3
+Art Events: 1
+Soccer Games: 2
+Basketball Games: 1
+Concerts: 2
+Orchestras: 1
