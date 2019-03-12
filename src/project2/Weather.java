@@ -32,7 +32,7 @@ public class Weather {
 
     public double getHeatIndex() {return -42.379 + 2.04901523*getTemperature() + 10.14333127*getHumidity() - 0.22475541*getTemperature()*getHumidity() - 0.00683783*Math.pow(this.getTemperature(), 2.0) - 0.05481717*Math.pow(this.getHumidity(), 2.0) + 0.00122874*Math.pow(this.getTemperature(), 2.0)*getHumidity() + 0.00085282*getTemperature()*Math.pow(this.getHumidity(), 2.0) - 0.00000199*Math.pow(this.getTemperature(), 2.0)*Math.pow(this.getHumidity(), 2.0);}
 
-    public boolean isGoodWeather() {return this.isSunny() && (this.getTemperature() >= 60.0 && this.getTemperature() <= 95.0) && this.getWindSpeed() <= 10.0 && (this.getHumidity() >= 0.4 && this.getHumidity() <= 0.8);}
+    public boolean isGoodWeather() {return this.isSunny() && (this.getTemperature() >= 60.0 && this.getTemperature() <= 95.0) && this.getWindSpeed() <= 10.0 && (this.getHumidity() >= 0.4 && this.getHumidity() <= 0.8) && (this.getHeatIndex() <= 90.0);}
 
     public boolean isBadWeather()  {return !(this.isGoodWeather());}
 
