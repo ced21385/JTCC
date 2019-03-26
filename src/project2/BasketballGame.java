@@ -3,24 +3,21 @@ package project2;
 import project2.SportEvent;
 import project2.Event;
 import java.util.Date;
+import java.text.ParseException;
 
-public class BasketballGame extends SportEvent {
+public final class BasketballGame extends SportEvent {
 
-    private static int numberOfObjects;
+    private static int numberOfObjects = 0;
 
-    public BasketballGame(String name, String place, Date dateTime, int audience, String[] teams, int[] scores, String league) {
+    public BasketballGame(String name, String place, Date dateTime, int audience, String[] teams, int[] scores, String league)
+    throws ParseException{
         super(name, place, dateTime, audience, teams, scores, league);
-        this.setNumberOfObjects();
-    }
-
-    public static void setNumberOfObjects(){
-        numberOfObjects+=1;
+        BasketballGame.numberOfObjects++;
     }
 
     public static int getNumberOfObjects(){
-        return numberOfObjects;
+        return BasketballGame.numberOfObjects;
     }
-
 
 
     @Override

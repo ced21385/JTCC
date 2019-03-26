@@ -1,32 +1,28 @@
 package project2;
 
-import java.util.Arrays;
+import java.text.ParseException;
 import java.util.Date;
 import project2.MusicEvent;
 import project2.Event;
 
-public class Orchestra extends MusicEvent{
+public final class Orchestra extends MusicEvent{
 
     private boolean casualAttire;
-    private static int NumberOfObjects = 0;
+    private static int numberOfObjects = 0;
 
-    public Orchestra(String name, String place, Date dateTime, int audience, String[] performers, boolean casualAttire) {
+    public Orchestra(String name, String place, Date dateTime, int audience, String[] performers, boolean casualAttire)
+    throws ParseException{
         super(name, place, dateTime, audience, performers);
         this.setCasualAttire(casualAttire);
-        this.setNumberOfObjects();
+        Orchestra.numberOfObjects++;
     }
 
-
-    public static void setNumberOfObjects(){
-        NumberOfObjects+= 1;
-    }
     public static int getNumberOfObjects(){
-        return NumberOfObjects;
+        return Orchestra.numberOfObjects;
     }
-
 
     public boolean isCasualAttire(){
-        return casualAttire;
+        return this.casualAttire;
     }
 
     public void setCasualAttire(boolean casualAttire){
@@ -34,12 +30,6 @@ public class Orchestra extends MusicEvent{
     }
 
     @Override
-    public String toString() {
-        return String.format("[class = %s, name = %s, place = %s, date/time = %s, %s, audience = %s] %n[performers = %s] [%s]",
-                this.getClass().getSimpleName(),
-                this.getName(), this.getPlace(), this.formatDate(this.getDateTime()),
-                Week.isWeekEnd(this.getDateTime()),
-                this.getAudience(), Arrays.toString(this.getPerformers()),
-                this.isCasualAttire() ? "Casual Attire" : "Formal Attire");
-    }
+    public String toString() {return super.toString() + " [" + ((this.isCasualAttire()) ?
+            "Casual Attire" : "Formal Attire") + "]";}
 }

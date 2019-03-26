@@ -31,7 +31,7 @@ public class InvestmentValueCalculator extends Application {
         Application.launch(args);
 
     }
-    private class gridPane extends GridPane {
+    public static class gridPane extends GridPane {
 
         private Label lbInvestmentAmount = new Label("Investment Amount:");
         private TextField tfInvestmentAmount = new TextField();
@@ -43,7 +43,7 @@ public class InvestmentValueCalculator extends Application {
         private TextField tfFutureValue = new TextField();
         private Button btCalculate = new Button("Calculate:");
 
-        private gridPane() {
+        public gridPane() {
 
 
             setHgap(10);

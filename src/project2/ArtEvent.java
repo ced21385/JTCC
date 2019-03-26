@@ -2,34 +2,34 @@ package project2;
 
 import java.util.Date;
 import project2.Event;
+import java.lang.String;
+import java.text.ParseException;
 
-public class ArtEvent extends Event {
+public final class ArtEvent extends Event {
 
-    String type;
-    private static int NumberOfObjects = 0;
+    private String type;
+    private static int numberOfObjects = 0;
 
-    public ArtEvent(String name, String place, Date dateTime, int audience, String type){
+    public ArtEvent(String name, String place, Date dateTime, int audience, String type) throws ParseException{
         super(name, place, dateTime, audience);
-        this.setNumberOfObjects();
+        ArtEvent.numberOfObjects++;
         this.setType(type);
     }
 
-    public static void setNumberOfObjects(){
-        NumberOfObjects+= 1;
-    }
 
     public static int getNumberOfObjects(){
-        return NumberOfObjects;
+        return ArtEvent.numberOfObjects;
     }
-
 
 
     public String getType(){
-        return type;
+        return this.type;
     }
 
     public void setType(String type){
         this.type = type;
     }
 
+    @Override
+    public String toString() {return super.toString() + " [type = " + this.getType() + "]";}
 }

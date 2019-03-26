@@ -1,21 +1,27 @@
 package project2;
+import com.sun.org.apache.xpath.internal.operations.Number;
 
 import java.lang.String;
+import java.time.Month;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import project2.Week;
+import java.text.ParseException;
 
-public abstract class Event {
+public class Event {
 
-    private static int numberOfObjects;
+    private static int numberOfObjects = 0;
     private String name;
     private String place;
     private Date dateTime;
     private int audience;
 
 
-    public Event(String name, String place, Date dateTime, int audience){
-
-        this.setNumberOfObjects();
+    protected Event() { Event.numberOfObjects++;}
+    protected Event(String name, String place, Date dateTime, int audience){
+        Event.numberOfObjects++;
         this.setName(name);
         this.setPlace(place);
         this.setDateTime(dateTime);
@@ -23,58 +29,49 @@ public abstract class Event {
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
-    public void setName(String name){
+    public final void setName(String name){
         this.name = name;
     }
 
     public String getPlace(){
-        return place;
+        return this.place;
     }
 
-    public void setPlace(String place){
+    public final void setPlace(String place){
         this.place = place;
     }
 
-    public static void setNumberOfObjects(){
-        numberOfObjects+= 1;
-    }
-
     public static int getNumberOfObjects(){
-        return numberOfObjects;
+        return Event.numberOfObjects;
     }
 
-
-    public Date getDateTime(){
-       return dateTime;
-    }
-
-    public void setDateTime(Date dateTime){
+    public final void setDateTime(Date dateTime){
         this.dateTime = dateTime;
     }
 
-    public String formatDate(Date dateTime){
-        SimpleDateFormat Date = new SimpleDateFormat("mm/dd/yyyy kk:mm");
-        return Date.format(this.getDateTime());
+    public Date getDateTime(){
+       return this.dateTime;
+    }
+
+    public String getDateTimeString(){
+        return (new SimpleDateFormat("MM/dd/yyyy HH:mm")).format(this.getDateTime());
     }
 
     public int getAudience(){
-        return audience;
+        return this.audience;
     }
 
-    public void setAudience(int audience){
+    public final void setAudience(int audience){
         this.audience = audience;
     }
 
     @Override
-    public String toString() {
-        return
-                String.format("[class = %s, name = %s, place = %s , date/time = %s, %s, audience = %s]",
-                        this.getClass().getSimpleName(), this.getName(), this.getPlace(),
-                        this.formatDate(this.getDateTime()), Week.isWeekEnd(this.getDateTime()),
-                        this.getAudience());
-    }
+    public String toString() {return "[class = " + this.getClass().getSimpleName() +
+            ", name = " + this.getName() + ", place = " +this.getPlace()  + ", date/time = "
+            + this.getDateTimeString() +  ", " + ((Week.isWeekEnd(this.getDateTime())) ? "Weekend" : "Weekday") +
+            ", audience = " + this.getAudience() + "]";}
 
 }
