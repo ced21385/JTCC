@@ -13,10 +13,9 @@ import javafx.scene.control.ToggleGroup;
 import project4.ArtEvent;
 import javafx.event.ActionEvent;
 import java.util.Date;
-
 import java.text.ParseException;
 
-public class ArtEventPane {
+public class ArtEventPane extends Pane{
 
     ArtEventPane() {}
 
@@ -70,6 +69,13 @@ public class ArtEventPane {
         gridPane.add(new Label("Place:"),2,0);
         gridPane.add(new Label("Time (hh:mm)"),2,1);
         gridPane.add(new Label("Type:"),2,2);
+
+        eventName.setAlignment(Pos.BOTTOM_RIGHT);
+        date.setAlignment(Pos.BOTTOM_RIGHT);
+        audience.setAlignment(Pos.BOTTOM_RIGHT);
+        place.setAlignment(Pos.BOTTOM_RIGHT);
+        time.setAlignment(Pos.BOTTOM_RIGHT);
+        type.setAlignment(Pos.BOTTOM_RIGHT);
 
         ArtPane = gridPane;
 

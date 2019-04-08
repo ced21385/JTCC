@@ -1,13 +1,15 @@
 package project4;
 
-import project3.Week;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.lang.String;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Event {
+public class Event  {
+
     private String name;
     private String place;
     private Date dateTime;

@@ -1,12 +1,12 @@
 package project4;
 
+import javafx.stage.Stage;
 import project4.Event;
-import java.text.ParseException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ArtEvent  extends Event {
+public class ArtEvent extends Event {
 
         private String type;
         private static int numberOfObjects = 0;
@@ -25,5 +25,6 @@ public class ArtEvent  extends Event {
 
         @Override
         public String toString() {return super.toString() + " [type = " + this.getType() + "]";}
+
 
 }
