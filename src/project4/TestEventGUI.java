@@ -27,16 +27,22 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.collections.ListChangeListener;
 
-public class TestEventGUI extends Application {
+import java.text.ParseException;
+import java.util.Iterator;
+
+public class TestEventGUI extends Application  {
+
+    public TestEventGUI() throws ParseException {
+    }
 
     public static void main(String[] args){launch(args);}
 
     private final String[] titles = { "Art Event","Basketball Game","Concert",
             "Orchestra","Soccer Game","Statistics","Close"};
-    private final Pane[] displayPanes = { new ArtEventPane().getArtPane(),
-            new BasketBallGamePane().getBasketBallPane(), new ConcertPane().getConcertPane(),
-            new OrchestraPane().getOrchestraPane(),new SoccerGamePane().getSoccerPane(),
-            new StatisticsPane().getStatistics()};
+    private  Pane[] displayPanes = new Pane[]{ new ArtEventPane().getArtPane(),
+                        new BasketBallGamePane().getBasketBallPane(), new ConcertPane().getConcertPane(),
+                        new OrchestraPane().getOrchestraPane(),new SoccerGamePane().getSoccerPane(),
+                        new StatisticsPane().getStatistics()};
 
     @Override
     public void start(Stage primaryStage) {
@@ -77,6 +83,15 @@ public class TestEventGUI extends Application {
                     else { System.exit(0); }
                 }
         );
+        Iterator<Event> eventListIterator = project4.Event.getEventList().iterator();
+        project4.Event event;
+        int   eventNumber;
+        while (eventListIterator.hasNext()) {
+            event = eventListIterator.next();
+            eventNumber = project4.Event.getEventList().indexOf(event) + 1;
+            String hold = ("\nEvent: " + String.valueOf(eventNumber) +
+                    ": Class: " + event.getClass().getSimpleName() + ",\tEvent Name: " + event.getName());
+        }// while
 
         Scene scene = new Scene(pane,1050,400);
         primaryStage.setTitle("TestEventGUI");

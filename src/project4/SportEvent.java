@@ -14,7 +14,7 @@ public class SportEvent extends Event {
     private int loserIndex;
     private static int numberOfObjects = 0;
 
-    protected SportEvent(String s){ project4.SportEvent.numberOfObjects++;}
+    protected SportEvent(){ project4.SportEvent.numberOfObjects++;}
 
     protected SportEvent(String name, String place, Date dateTime, int audience, String[] teams,
                          int[] scores, String league) throws ParseException {

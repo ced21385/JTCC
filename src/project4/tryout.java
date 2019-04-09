@@ -37,7 +37,7 @@ public class tryout extends Application {
     public void start(Stage primaryStage) {
 
         ArtEventPane art = new ArtEventPane();
-        BasketBallGamePane bb = new BasketBallGamePane();
+       // BasketBallGamePane bb = new BasketBallGamePane();
         OrchestraPane o = new OrchestraPane();
         SoccerGamePane s = new SoccerGamePane();
         Pane pane = s.getSoccerPane();

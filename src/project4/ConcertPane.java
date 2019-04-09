@@ -62,8 +62,8 @@ public class ConcertPane extends Pane{
 
         sunny.setToggleGroup(sun);
         notSunny.setToggleGroup(sun);
-        sunny.setDisable(true);
-        notSunny.setDisable(true);
+        sunny.setDisable(false);
+        notSunny.setDisable(false);
         sunny.setOpacity(100);
         notSunny.setOpacity(100);
         sunPane.getChildren().addAll(sunny,notSunny);
@@ -126,6 +126,38 @@ public class ConcertPane extends Pane{
         type.setAlignment(Pos.BOTTOM_RIGHT);
         temperature.setAlignment(Pos.BOTTOM_RIGHT);
         humidity.setAlignment(Pos.BOTTOM_RIGHT);
+
+        submit.setOnAction((ActionEvent e)->{
+            try{
+                Date temp = new Date(date.getText() + " " + time.getText());
+                boolean weknd = Week.isWeekEnd(temp);
+                String perform = performers.getText();
+                String[] p = {perform};
+                boolean sunny1 = false;
+                if (sunny.hasProperties()){
+                    sunny.setSelected(true);
+                    sunny1 = true;
+                }
+                Double t = Double.parseDouble(temperature.getText());
+                Double w = Double.parseDouble(wind.getText());
+                Double h = Double.parseDouble(humidity.getText());
+                Weather weather1 = new Weather(sunny1,t,w,h);
+                if(t>=60 && t<=95 && w<=10 && h <=.80 && h>=.40){ good.setSelected(true);}
+                else{bad.setSelected(true);}
+
+                Concert concert = new Concert(name.getText(),place.getText(),temp,
+                        Integer.parseInt(audience.getText()),p,type.getText(),weather1);
+
+                if (Week.isWeekEnd(temp)) {
+                    weekend.setSelected(true);
+                } else if (Week.isWeekDay(temp)) {
+                    weekday.setSelected(true);
+                }
+            }
+            catch(java.text.ParseException e1){
+                e1.printStackTrace();
+            }
+        });
 
         clear.setOnAction((ActionEvent e)->{
             name.clear();

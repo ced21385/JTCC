@@ -2,11 +2,13 @@ package project4;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import project3.TestEvent;
 
 import java.lang.String;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 public class Event  {
 
@@ -48,11 +50,13 @@ public class Event  {
     public static ArrayList getEventList(){ return eventList;}
 
     @Override  // java.lang.Object.toString()
-    public String toString() {return "[class = " + this.getClass().getSimpleName() +
-            ", name = " + this.getName() + ", place = " +this.getPlace()  + ", date/time = "
-            + this.getDateTimeString() +  ", " + ((Week.isWeekEnd(this.getDateTime())) ? "Weekend" : "Weekday")
-            + ", audience = " + this.getAudience() + "]";
+    public String toString() {
+        return "[class = " + this.getClass().getSimpleName() +
+                ", name = " + this.getName() + ", place = " + this.getPlace() + ", date/time = "
+                + this.getDateTimeString() + ", " + ((Week.isWeekEnd(this.getDateTime())) ? "Weekend" : "Weekday")
+                + ", audience = " + this.getAudience() + "]";
     }
+
 }
 
 

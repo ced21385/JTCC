@@ -99,22 +99,24 @@ public class OrchestraPane extends Pane{
 
         OrchestraPane = gridPane;
 
-//        submit.setOnAction((ActionEvent e)-> {
-//            try {
-//                Date temp = new Date(date.getText() + " " + time.getText());
-//                boolean weknd = Week.isWeekEnd(temp);
-//
-//                MusicEvent orchestra = new MusicEvent(name.getText(), place.getText(), temp,
-//                        performers.getText(),Integer.parseInt(audience.getText()));
-//                if (Week.isWeekEnd(temp)) {
-//                    weekend.setSelected(true);
-//                } else if (Week.isWeekDay(temp)) {
-//                    weekday.setSelected(true);
-//                }
-//            } catch (ParseException e1) {
-//                e1.printStackTrace();
-//            }
-//        });
+        submit.setOnAction((ActionEvent e)-> {
+            try {
+                Date temp = new Date(date.getText() + " " + time.getText());
+                boolean weknd = Week.isWeekEnd(temp);
+                String perform = performers.getText();
+                String[] p = {perform};
+
+                MusicEvent orchestra = new Orchestra(name.getText(), place.getText(), temp,
+                        Integer.parseInt(audience.getText()), p,true);
+                if (Week.isWeekEnd(temp)) {
+                    weekend.setSelected(true);
+                } else if (Week.isWeekDay(temp)) {
+                    weekday.setSelected(true);
+                }
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        });
         clear.setOnAction((ActionEvent e)->{
             name.clear();
             date.clear();

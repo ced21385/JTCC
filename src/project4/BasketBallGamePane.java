@@ -18,8 +18,7 @@ import java.util.Arrays;
 
 public class BasketBallGamePane extends Pane{
 
-    BasketBallGamePane() {
-    }
+    BasketBallGamePane() throws ParseException { }
 
     private TextField eventName = new TextField();
     private TextField eventDate = new TextField();
@@ -44,6 +43,8 @@ public class BasketBallGamePane extends Pane{
     private HBox radioGroupPane = new HBox();
 
     {
+        winner.setDisable(true);
+
         weekend.setToggleGroup(radioGroup);
         weekday.setToggleGroup(radioGroup);
         weekend.setDisable(true);
@@ -94,7 +95,6 @@ public class BasketBallGamePane extends Pane{
         team1.setAlignment(Pos.BOTTOM_RIGHT);
         team2.setAlignment(Pos.BOTTOM_RIGHT);
         time.setAlignment(Pos.BOTTOM_RIGHT);
-        winner.setAlignment(Pos.BOTTOM_RIGHT);
         place.setAlignment(Pos.BOTTOM_RIGHT);
         league.setAlignment(Pos.BOTTOM_RIGHT);
         score1.setAlignment(Pos.BOTTOM_RIGHT);
@@ -103,15 +103,42 @@ public class BasketBallGamePane extends Pane{
         BasketBallPane = gridPane;
 
         submit.setOnAction((ActionEvent e)-> {
-            Date temp = new Date(eventDate.getText() + " " + time.getText());
-            boolean weknd = Week.isWeekEnd(temp);
+            try {
+                Date temp = new Date(eventDate.getText() + " " + time.getText());
+                boolean weknd = Week.isWeekEnd(temp);
+                String temps = team1.getText();
+                String temps2 = team2.getText();
+                String[] tempss = new String[]{temps,temps2};
+                int scoretemp = Integer.parseInt(score1.getText());
+                int scoretemp2 = Integer.parseInt(score2.getText());
+                int[] scores = new int[] {scoretemp,scoretemp2};
 
-            SportEvent bballEvent = new SportEvent(super.toString());
-            if (Week.isWeekEnd(temp)) {
-                weekend.setSelected(true);
-            } else if (Week.isWeekDay(temp)) {
-                weekday.setSelected(true); }
-            Event.getEventList().add(bballEvent);
+                if (scoretemp > scoretemp2){
+                    winner = team1;
+                    gridPane.add(new Label(team1.getText()),1,6);
+                }
+                else if(scoretemp2 > scoretemp){
+                    winner = team2;
+                    winner.setAlignment(Pos.BOTTOM_RIGHT);
+                    gridPane.add(new Label(team2.getText()),1,6);
+                }
+                else{
+                    if(Math.random() > .5){
+                        winner = team1;
+                        gridPane.add(new Label(team1.getText()),1,6);
+                    }
+                }
+
+                SportEvent bballEvent = new BasketBallGame(eventName.getText(), place.getText(),
+                        temp, Integer.parseInt(audience.getText()),tempss,scores, league.getText());
+                if (Week.isWeekEnd(temp)) {
+                    weekend.setSelected(true);
+                } else if (Week.isWeekDay(temp)) {
+                    weekday.setSelected(true);
+                }
+            }catch (java.text.ParseException e1){
+                e1.printStackTrace();
+            }
         });
 
         clear.setOnAction((ActionEvent e)->{
@@ -126,6 +153,7 @@ public class BasketBallGamePane extends Pane{
             team2.clear();
             league.clear();
             winner.clear();
+            winner.setText(" ");
             weekend.setSelected(false);
             weekday.setSelected(false);
             });
@@ -133,7 +161,7 @@ public class BasketBallGamePane extends Pane{
 
 
 
-    Pane getBasketBallPane() {
+    Pane getBasketBallPane() throws ParseException {
         return BasketBallPane;
     }
 }

@@ -55,6 +55,8 @@ public class SoccerGamePane extends Pane{
     private HBox radioGroupPane = new HBox();
 
     {
+        winner.setDisable(true);
+
         weekend.setToggleGroup(radioGroup);
         weekday.setToggleGroup(radioGroup);
         weekend.setDisable(true);
@@ -66,8 +68,8 @@ public class SoccerGamePane extends Pane{
 
         sunny.setToggleGroup(sunnyGroup);
         notSunny.setToggleGroup(sunnyGroup);
-        sunny.setDisable(true);
-        notSunny.setDisable(true);
+        sunny.setDisable(false);
+        notSunny.setDisable(false);
         sunny.setOpacity(100);
         notSunny.setOpacity(100);
         sunnyPane.getChildren().addAll(sunny,notSunny);
@@ -93,7 +95,7 @@ public class SoccerGamePane extends Pane{
         gridPane.add(audience, 1, 2);
         gridPane.add(team1, 1, 3);
         gridPane.add(team2, 1, 4);
-        gridPane.add(weatherPane,1,5);
+        gridPane.add(sunnyPane,1,5);
         gridPane.add(wind,1,6);
         gridPane.add(clear, 0, 7);
         gridPane.add(winner, 1, 8);
@@ -107,7 +109,7 @@ public class SoccerGamePane extends Pane{
         gridPane.add(temperature,3,5);
         gridPane.add(humidity,3,6);
         gridPane.add(submit, 2, 7);
-        gridPane.add(sunnyPane,3,9);
+        gridPane.add(weatherPane,3,9);
 
         gridPane.add(new Label("Name:"), 0, 0);
         gridPane.add(new Label("Date (mm/dd/yyyy):"), 0, 1);
@@ -134,7 +136,6 @@ public class SoccerGamePane extends Pane{
         team1.setAlignment(Pos.BOTTOM_RIGHT);
         team2.setAlignment(Pos.BOTTOM_RIGHT);
         wind.setAlignment(Pos.BOTTOM_RIGHT);
-        winner.setAlignment(Pos.BOTTOM_RIGHT);
         place.setAlignment(Pos.BOTTOM_RIGHT);
         time.setAlignment(Pos.BOTTOM_RIGHT);
         league.setAlignment(Pos.BOTTOM_RIGHT);
@@ -145,23 +146,57 @@ public class SoccerGamePane extends Pane{
 
         SoccerPane = gridPane;
 
- //       submit.setOnAction((ActionEvent e)-> {
- //           try {
- //               Date temp = new Date(eventDate.getText() + " " + time.getText());
- //               boolean weknd = Week.isWeekEnd(temp);
-//
-//                SportEvent soccerGame = new SportEvent(eventName.getText(), place.getText(), temp,
-//                        Integer.parseInt(audience.getText()),team1.getText(),
-//                        team2.toString(), score1.toString(), score2.toString(),league.getText());
-//                if (Week.isWeekEnd(temp)) {
-//                    weekend.setSelected(true);
-//                } else if (Week.isWeekDay(temp)) {
-//                    weekday.setSelected(true);
-//                }
-//            } catch (ParseException e1) {
-//                e1.printStackTrace();
-//            }
-//        });
+        submit.setOnAction((ActionEvent e)-> {
+            try {
+                Date temp = new Date(eventDate.getText() + " " + time.getText());
+                boolean weknd = Week.isWeekEnd(temp);
+                String temps = team1.getText();
+                String temps2 = team2.getText();
+                String[] tempss = new String[]{temps,temps2};
+                int scoretemp = Integer.parseInt(score1.getText());
+                int scoretemp2 = Integer.parseInt(score2.getText());
+                if (scoretemp > scoretemp2){
+                     winner = team1;
+                    winner.setAlignment(Pos.BOTTOM_RIGHT);
+                    gridPane.add(new Label(team1.getText()),1,8);
+                }
+                else if(scoretemp2 > scoretemp){
+                    winner = team2;
+                    winner.setAlignment(Pos.BOTTOM_RIGHT);
+                    gridPane.add(new Label(team2.getText()),1,8);
+                }
+                else{
+                    if(Math.random() > .5){
+                        winner = team1;
+                        winner.setAlignment(Pos.BOTTOM_RIGHT);
+                        gridPane.add(new Label(team1.getText()),1,8);
+                    }
+                }
+                int[] scores = new int[] {scoretemp,scoretemp2};
+                boolean sunny1 = false;
+                if (sunny.hasProperties()){
+                    sunny.setSelected(true);
+                    sunny1 = true;
+                }
+                Double t = Double.parseDouble(temperature.getText());
+                Double w = Double.parseDouble(wind.getText());
+                Double h = Double.parseDouble(humidity.getText());
+                Weather weather1 = new Weather(sunny1,t,w,h);
+                if(t>=60 && t<=95 && w<=10 && h <.80&&h>=.40){ goodWeather.setSelected(true);}
+                else{bad.setSelected(true);}
+
+                SportEvent soccerGame = new SoccerGame(eventName.getText(), place.getText(), temp,
+                        Integer.parseInt(audience.getText()),tempss,scores,league.getText(),weather1);
+                if (Week.isWeekEnd(temp)) {
+                    weekend.setSelected(true);
+                } else if (Week.isWeekDay(temp)) {
+                    weekday.setSelected(true);
+                }
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        });
+
         clear.setOnAction((ActionEvent e)->{
             eventName.clear();
             eventDate.clear();

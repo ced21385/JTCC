@@ -11,6 +11,8 @@ import project4.ArtEvent;
 import javafx.event.ActionEvent;
 import java.util.Date;
 import java.text.ParseException;
+import java.util.Iterator;
+
 import javafx.scene.text.Font;
 
 public class StatisticsPane extends Pane{
@@ -39,7 +41,6 @@ public class StatisticsPane extends Pane{
         area.setFont(new Font("Times New Roman",12));
         area.setPrefSize(750,200);
         gridPane.add(area,0,6,6,6);
-        area.insertText(0,Event.getEventList().toString());
 
         gridPane.setAlignment(Pos.TOP_LEFT);
 
@@ -83,8 +84,25 @@ public class StatisticsPane extends Pane{
         StatisticsPane = gridPane;
 
         count.setOnAction((ActionEvent e)->{
-            area.insertText(0,Event.getEventList().toString());
-
+            Iterator<project4.Event> eventListIterator = project4.Event.getEventList().iterator();
+            project4.Event event;
+            int eventNumber;
+            while (eventListIterator.hasNext()){
+                event = eventListIterator.next();
+                eventNumber = project4.Event.getEventList().indexOf(event) + 1;
+                area.insertText(0,"\nEvent " + String.valueOf(eventNumber) + ": Class: " +
+                        event.getClass().getSimpleName() + ",\tEvent Name: " + event.getName());
+            }
+            area.insertText(0,"\n\n\n\n\n");
+            area.insertText(0,"Events:\n"+ Event.getEventList().toString());
+            events.setText(String.valueOf(Event.getNumberOfObjects()));
+            sportE.setText(String.valueOf(SportEvent.getNumberOfObjects()));
+            soccer.setText(String.valueOf(SoccerGame.getNumberOfObjects()));
+            concerts.setText(String.valueOf(Concert.getNumberOfObjects()));
+            music.setText(String.valueOf(MusicEvent.getNumberOfObjects()));
+            bball.setText(String.valueOf(BasketBallGame.getNumberOfObjects()));
+            orchestra.setText(String.valueOf(Orchestra.getNumberOfObjects()));
+            art.setText(String.valueOf(ArtEvent.getNumberOfObjects()));
         });
 
         clear.setOnAction((ActionEvent e)->{
@@ -96,19 +114,9 @@ public class StatisticsPane extends Pane{
             bball.clear();
             orchestra.clear();
             art.clear();
+            area.clear();
         });
     }
-
-    public static void getNumberOfObjects() {
-        System.out.println("Events: "           + Event.getNumberOfObjects());
-        System.out.println("Sport Events: "     + SportEvent.getNumberOfObjects());
-        System.out.println("Music Events: "     + MusicEvent.getNumberOfObjects());
-        System.out.println("Art Events: "       + ArtEvent.getNumberOfObjects());
-        System.out.println("Soccer Games: "     + SoccerGame.getNumberOfObjects());
-        System.out.println("Basketball Games: " + BasketBallGame.getNumberOfObjects());
-        System.out.println("Concerts: "         + Concert.getNumberOfObjects());
-        System.out.println("Orchestras: "       + Orchestra.getNumberOfObjects());
-    }  // getNumberOfObjects()
 
     Pane getStatistics(){return StatisticsPane;}
 }
