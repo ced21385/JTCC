@@ -1,0 +1,32 @@
+Events:
+Event 1: Class: SoccerGame;	Name: Ultimate Cup;	Audience: 1000
+Event 2: Class: BasketBallGame;	Name: NCAA;	Audience: 2000
+Event 3: Class: Concert;	Name: Folk Festival;	Audience: 900
+Event 4: Class: Orchestra;	Name: Dominion Energy Casual Fridays;	Audience: 800
+Event 5: Class: SoccerGame;	Name: Jefferson Cup;	Audience: 2000
+Event 6: Class: Concert;	Name: Innsbrook After Hours;	Audience: 500
+Event 7: Class: ArtEvent;	Name: Abstract Art in Dialogue;	Audience: 500
+
+Statistics of audiences (all events):
+All Events:	Count:7;	Sum: 7700;	Average: 1100;	Max: 2000;	Min: 500
+
+Number of most popular events: 2
+Most popular events (sorted by name):
+Event 5: Jefferson Cup
+Event 2: NCAA
+
+Events (sorted by class name then by name):
+Event 7: Class: ArtEvent;	Name: Abstract Art in Dialogue;	Audience: 500
+Event 2: Class: BasketBallGame;	Name: NCAA;	Audience: 2000
+Event 3: Class: Concert;	Name: Folk Festival;	Audience: 900
+Event 6: Class: Concert;	Name: Innsbrook After Hours;	Audience: 500
+Event 4: Class: Orchestra;	Name: Dominion Energy Casual Fridays;	Audience: 800
+Event 5: Class: SoccerGame;	Name: Jefferson Cup;	Audience: 2000
+Event 1: Class: SoccerGame;	Name: Ultimate Cup;	Audience: 1000
+
+Statistics of audiences (by event class name):
+ArtEvent:	Count: 1;	Sum: 500;	Average: 500;	Max: 500;	Min: 500
+BasketBallGame:	Count: 1;	Sum: 2000;	Average: 2000;	Max: 2000;	Min: 2000
+Concert:	Count: 2;	Sum: 1400;	Average: 700;	Max: 900;	Min: 500
+Orchestra:	Count: 1;	Sum: 800;	Average: 800;	Max: 800;	Min: 800
+SoccerGame:	Count: 2;	Sum: 3000;	Average: 1500;	Max: 2000;	Min: 1000
